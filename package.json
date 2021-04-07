@@ -1,0 +1,23 @@
+{
+  "name": "launchext-json-helper",
+  "version": "1.0.0",
+  "description": "Parse JSON strings and convert values to JSON natively within Launch without using custom code at all.",
+  "author": "Yuhui",
+  "license": "GPL-3.0-or-later",
+  "main": "main.js",
+  "devDependencies": {
+    "eslint": "^7.23.0",
+    "jasmine": "^3.7.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yuhui/launchext-json-helper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yuhui/launchext-json-helper/issues"
+  },
+  "homepage": "https://github.com/yuhui/launchext-json-helper"
+}

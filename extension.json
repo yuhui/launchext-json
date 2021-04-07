@@ -1,0 +1,47 @@
+{
+  "displayName": "JSON Helper",
+  "name": "json-helper",
+  "platform": "web",
+  "version": "1.0.0",
+  "description": "Parse JSON strings and convert values to JSON natively within Launch without using custom code at all.",
+  "author": {
+    "name": "Yuhui",
+    "url": "https://yuhui.sg",
+    "email": "dev@yuhui.sg"
+  },
+  "exchangeUrl": "https://exchange.adobe.com/experiencecloud.details.106449.json-helper.html",
+  "iconPath": "json-helper-icon.svg",
+  "viewBasePath": "src/view/",
+  "configuration": {
+    "viewPath": "configuration/configuration.html",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "properties": {}
+    }
+  },
+  "dataElements": [
+    {
+      "displayName": "Parse",
+      "name": "parse",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {}
+      },
+      "libPath": "src/lib/dataElements/parse.js",
+      "viewPath": "dataElements/parse.html"
+    },
+    {
+      "displayName": "Stringify",
+      "name": "stringify",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {}
+      },
+      "libPath": "src/lib/dataElements/stringify.js",
+      "viewPath": "dataElements/stringify.html"
+    }
+  ]
+}
