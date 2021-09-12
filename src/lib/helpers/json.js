@@ -41,19 +41,27 @@ module.exports = {
    *
    * @return {boolean} `true` if the value is valid, `false` otherwise.
    */
-   isValidValue: function(value, isString) {
-     var result = true;
+  isValidValue: function(value, isString) {
+    var result = true;
 
-     if (!value) {
-      turbine.logger.error('the value to operate on is invalid');
+    if (value === undefined || value === null) {
+      // skip undefined and null values
+      // because this module could have been called in Rules that don't actually have the dependent
+      // data elements
+      turbine.logger.debug('the value to operate on is undefined or null');
       result = false;
-    }
-
-    if (value && isString) {
-      var valueType = Object.prototype.toString.call(value).slice(8, -1);
-      if (valueType !== 'String') {
-        turbine.logger.error('the value to parse is not a string');
+    } else {
+      if (!value) {
+        turbine.logger.error('the value to operate on is invalid');
         result = false;
+      }
+
+      if (value && isString) {
+        var valueType = Object.prototype.toString.call(value).slice(8, -1);
+        if (valueType !== 'String') {
+          turbine.logger.error('the value to parse is not a string');
+          result = false;
+        }
       }
     }
 

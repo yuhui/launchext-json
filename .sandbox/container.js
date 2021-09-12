@@ -19,22 +19,58 @@ module.exports = {
       "modulePath": "sandbox/javascriptVariable.js",
       "storageDuration": ""
     },
-    "stringified sampleObject": {
-      "settings": {
-        "objectValue": "%sampleObject%"
-      },
-      "cleanText": false,
-      "forceLowerCase": false,
-      "modulePath": "json/src/lib/dataElements/stringify.js",
-      "storageDuration": ""
-    },
     "parsed sampleString": {
       "settings": {
         "stringValue": "%sampleString%"
       },
       "cleanText": false,
       "forceLowerCase": false,
-      "modulePath": "json/src/lib/dataElements/parse.js",
+      "modulePath": "json-helper/src/lib/dataElements/parse.js",
+      "storageDuration": ""
+    },
+    "stringified sampleObject": {
+      "settings": {
+        "objectValue": "%sampleObject%"
+      },
+      "cleanText": false,
+      "forceLowerCase": false,
+      "modulePath": "json-helper/src/lib/dataElements/stringify.js",
+      "storageDuration": ""
+    },
+    "nullObject": {
+      "settings": {
+        "path": "nullObject"
+      },
+      "cleanText": false,
+      "forceLowerCase": false,
+      "modulePath": "sandbox/javascriptVariable.js",
+      "storageDuration": ""
+    },
+    "undefinedObject": {
+      "settings": {
+        "path": "undefinedObject"
+      },
+      "cleanText": false,
+      "forceLowerCase": false,
+      "modulePath": "sandbox/javascriptVariable.js",
+      "storageDuration": ""
+    },
+    "parsed nullObject": {
+      "settings": {
+        "stringValue": "%nullObject%"
+      },
+      "cleanText": false,
+      "forceLowerCase": false,
+      "modulePath": "json-helper/src/lib/dataElements/parse.js",
+      "storageDuration": ""
+    },
+    "stringified undefinedObject": {
+      "settings": {
+        "objectValue": "%undefinedObject%"
+      },
+      "cleanText": false,
+      "forceLowerCase": false,
+      "modulePath": "json-helper/src/lib/dataElements/stringify.js",
       "storageDuration": ""
     }
   },
@@ -52,9 +88,9 @@ module.exports = {
     "orgId": "ABCDEFGHIJKLMNOPQRSTUVWX@AdobeOrg"
   },
   "buildInfo": {
-    "turbineVersion": "26.0.2",
-    "turbineBuildDate": "2021-04-04T15:18:00.116Z",
-    "buildDate": "2021-04-04T15:18:00.116Z",
+    "turbineVersion": "27.2.0",
+    "turbineBuildDate": "2021-09-11T10:03:47.565Z",
+    "buildDate": "2021-09-11T10:03:47.565Z",
     "environment": "development"
   }
 }
