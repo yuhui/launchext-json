@@ -1,6 +1,6 @@
 {
   "name": "launchext-json-helper",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Parse JSON strings and convert values to JSON natively within Adobe Experience Platform Data Collection Tags without using custom code at all.",
   "author": "Yuhui",
   "license": "GPL-3.0-or-later",
