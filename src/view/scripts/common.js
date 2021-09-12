@@ -118,38 +118,5 @@ function getFormFields(formId) {
 /** Check if a form value is a data element token */
 // eslint-disable-next-line no-unused-vars
 function isDataElementToken(formValue) {
-  return /^%.+%$/.test(formValue);
-}
-
-/** Show or hide an element based on the value of a form field */
-// eslint-disable-next-line no-unused-vars
-function toggleElement(formId, toggleField, toggleValue, selectorToToggle) {
-  var formValues = getFormValues(formId);
-  var toggleFieldValue = formValues[toggleField];
-
-  var elementToShowHide = document.querySelector(selectorToToggle);
-  if (toggleFieldValue === toggleValue) {
-    elementToShowHide.classList.remove('hide');
-    elementToShowHide.classList.add('show');
-  } else {
-    elementToShowHide.classList.remove('show');
-    elementToShowHide.classList.add('hide');
-  }
-}
-
-/** Show or hide an input's error message based on the validity of that input */
-// eslint-disable-next-line no-unused-vars
-function toggleInputErrorMessage(inputName, inputIsValid) {
-  var inputElement = document.querySelector('input[name="' + inputName + '"]');
-  var errorMessage =
-    inputElement.parentNode.parentNode.parentNode.parentNode.querySelector('span.error-message');
-  if (inputIsValid) {
-    inputElement.classList.remove('spectrum-Alert--error');
-    errorMessage.classList.remove('show');
-    errorMessage.classList.add('hide');
-  } else {
-    inputElement.classList.add('spectrum-Alert--error');
-    errorMessage.classList.remove('hide');
-    errorMessage.classList.add('show');
-  }
+  return /^%([^%]+)%$/.test(formValue);
 }
