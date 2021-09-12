@@ -2,7 +2,7 @@
   "displayName": "JSON Helper",
   "name": "json-helper",
   "platform": "web",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Parse JSON strings and convert values to JSON natively within Adobe Experience Platform Data Collection Tags without using custom code at all.",
   "author": {
     "name": "Yuhui",
@@ -51,7 +51,7 @@
         "properties": {
           "objectValue": {
             "description": "Stringify a JavaScript object from a data element",
-            "type": "object",
+            "type": "string",
             "minLength": 2,
             "pattern": "^%([^%]+)%$"
           }

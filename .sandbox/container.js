@@ -28,15 +28,6 @@ module.exports = {
       "modulePath": "json-helper/src/lib/dataElements/parse.js",
       "storageDuration": ""
     },
-    "stringified sampleObject": {
-      "settings": {
-        "objectValue": "%sampleObject%"
-      },
-      "cleanText": false,
-      "forceLowerCase": false,
-      "modulePath": "json-helper/src/lib/dataElements/stringify.js",
-      "storageDuration": ""
-    },
     "nullObject": {
       "settings": {
         "path": "nullObject"
@@ -72,6 +63,15 @@ module.exports = {
       "forceLowerCase": false,
       "modulePath": "json-helper/src/lib/dataElements/stringify.js",
       "storageDuration": ""
+    },
+    "stringified sampleObject": {
+      "settings": {
+        "objectValue": "%sampleObject%"
+      },
+      "cleanText": false,
+      "forceLowerCase": false,
+      "modulePath": "json-helper/src/lib/dataElements/stringify.js",
+      "storageDuration": ""
     }
   },
   "rules": [],
@@ -89,8 +89,8 @@ module.exports = {
   },
   "buildInfo": {
     "turbineVersion": "27.2.0",
-    "turbineBuildDate": "2021-09-11T10:03:47.565Z",
-    "buildDate": "2021-09-11T10:03:47.565Z",
+    "turbineBuildDate": "2021-09-12T15:23:06.071Z",
+    "buildDate": "2021-09-12T15:23:06.071Z",
     "environment": "development"
   }
 }
