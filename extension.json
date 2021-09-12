@@ -2,8 +2,8 @@
   "displayName": "JSON Helper",
   "name": "json-helper",
   "platform": "web",
-  "version": "1.0.0",
-  "description": "Parse JSON strings and convert values to JSON natively within Launch without using custom code at all.",
+  "version": "1.1.0",
+  "description": "Parse JSON strings and convert values to JSON natively within Adobe Experience Platform Data Collection Tags without using custom code at all.",
   "author": {
     "name": "Yuhui",
     "url": "https://yuhui.sg",
@@ -27,7 +27,17 @@
       "schema": {
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
-        "properties": {}
+        "properties": {
+          "stringValue": {
+            "description": "Parse a JSON string",
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "stringValue"
+        ],
+        "additionalProperties": false
       },
       "libPath": "src/lib/dataElements/parse.js",
       "viewPath": "dataElements/parse.html"
@@ -38,7 +48,18 @@
       "schema": {
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
-        "properties": {}
+        "properties": {
+          "objectValue": {
+            "description": "Stringify a JavaScript object from a data element",
+            "type": "object",
+            "minLength": 2,
+            "pattern": "^%([^%]+)%$"
+          }
+        },
+        "required": [
+          "objectValue"
+        ],
+        "additionalProperties": false
       },
       "libPath": "src/lib/dataElements/stringify.js",
       "viewPath": "dataElements/stringify.html"
