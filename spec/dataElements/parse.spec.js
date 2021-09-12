@@ -17,9 +17,10 @@
 'use strict';
 
 describe('parse data element delegate', function() {
-  var dataElementDelegate = require('../../lib/dataElements/parse');
+  var dataElementDelegate = require('../../src/lib/dataElements/parse');
 
   beforeEach(function() {
+    // eslint-disable-next-line quotes
     this.expectedResult = {"foo": 1, "bar": 2};
     this.settings = {
       stringValue: JSON.stringify(this.expectedResult)

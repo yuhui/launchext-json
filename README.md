@@ -1,6 +1,6 @@
-# JSON Helper Extension for Adobe Experience Platform Launch
+# JSON Helper Extension for Adobe Experience Platform Data Collection Tags
 
-This is an extension for Adobe Experience Platform Launch to provide native JSON support.
+This is an extension for Adobe Experience Platform Data Collection Tags to provide native JSON support.
 
 It provides Data Element types to perform the following operations:
 

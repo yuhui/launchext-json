@@ -17,7 +17,7 @@
 'use strict';
 
 describe('stringify data element delegate', function() {
-  var dataElementDelegate = require('../../lib/dataElements/stringify');
+  var dataElementDelegate = require('../../src/lib/dataElements/stringify');
 
   beforeEach(function() {
     this.expectedResult = '{"foo":1,"bar":2}';

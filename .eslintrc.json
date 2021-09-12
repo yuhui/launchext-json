@@ -1,6 +1,7 @@
 {
   "env": {
     "browser": true,
+    "jasmine": true,
     "node": true
   },
   "extends": [
@@ -11,7 +12,7 @@
     "turbine": true
   },
   "parserOptions": {
-    "ecmaVersion": 5, // Adobe Launch still uses ES5
+    "ecmaVersion": 5, // Adobe Experience Platform Data Collection Tags still uses ES5
     "sourceType": "script"
   },
   "rules": {

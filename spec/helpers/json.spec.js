@@ -20,7 +20,7 @@ describe('json helper delegate', function() {
   global.turbine = {
     logger: jasmine.createSpyObj('', ['debug', 'info', 'warn', 'alert', 'error']),
   };
-  var helperDelegate = require('../../lib/helpers/json');
+  var helperDelegate = require('../../src/lib/helpers/json');
 
   describe('has JSON', function() {
     it(
@@ -34,9 +34,29 @@ describe('json helper delegate', function() {
 
   describe('check for valid values', function() {
     it(
-      'should log an error message and return false when "value" is falsy',
+      'should log a debug message and return false when "value" is undefined',
+      function() {
+        var result = helperDelegate.isValidValue(undefined);
+        expect(result).toBeFalse();
+        var logResult = global.turbine.logger.debug;
+        expect(logResult).toHaveBeenCalledWith('the value to operate on is undefined or null');
+      }
+    );
+
+    it(
+      'should log a debug message and return false when "value" is null',
       function() {
         var result = helperDelegate.isValidValue(null);
+        expect(result).toBeFalse();
+        var logResult = global.turbine.logger.debug;
+        expect(logResult).toHaveBeenCalledWith('the value to operate on is undefined or null');
+      }
+    );
+
+    it(
+      'should log an error message and return false when "value" is falsy',
+      function() {
+        var result = helperDelegate.isValidValue('');
         expect(result).toBeFalse();
         var logResult = global.turbine.logger.error;
         expect(logResult).toHaveBeenCalledWith('the value to operate on is invalid');

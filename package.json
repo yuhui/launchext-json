@@ -1,16 +1,20 @@
 {
   "name": "launchext-json-helper",
-  "version": "1.0.0",
-  "description": "Parse JSON strings and convert values to JSON natively within Launch without using custom code at all.",
+  "version": "1.1.0",
+  "description": "Parse JSON strings and convert values to JSON natively within Adobe Experience Platform Data Collection Tags without using custom code at all.",
   "author": "Yuhui",
   "license": "GPL-3.0-or-later",
   "main": "main.js",
   "devDependencies": {
-    "eslint": "^7.23.0",
-    "jasmine": "^3.7.0"
+    "@adobe/reactor-packager": "^4.1.1",
+    "@adobe/reactor-releaser": "^3.0.3",
+    "@adobe/reactor-sandbox": "^12.0.0",
+    "@adobe/reactor-uploader": "^5.0.5",
+    "eslint": "^7.32.0",
+    "jasmine": "^3.9.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jasmine"
   },
   "repository": {
     "type": "git",
