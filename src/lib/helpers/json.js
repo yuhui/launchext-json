@@ -44,23 +44,17 @@ module.exports = {
   isValidValue: function(value, isString) {
     var result = true;
 
-    if (value === undefined || value === null) {
-      // skip undefined and null values
-      // because this module could have been called in Rules that don't actually have the dependent
-      // data elements
-      turbine.logger.debug('the value to operate on is undefined or null');
+    if (value === undefined) {
+      // skip undefined values
+      // because JSON doesn't operate on them
+      turbine.logger.debug('the value to operate on is undefined');
       result = false;
     } else {
-      if (!value) {
-        turbine.logger.error('the value to operate on is invalid');
-        result = false;
-      }
-
       if (value && isString) {
         var toString = Object.prototype.toString;
         var valueType = toString.call(value);
         if (valueType !== '[object String]') {
-          turbine.logger.error('the value to parse is not a string');
+          turbine.logger.error('the value to operate on is not a string');
           result = false;
         }
       }

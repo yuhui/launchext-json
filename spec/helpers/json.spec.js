@@ -39,27 +39,7 @@ describe('json helper delegate', () => {
         const result = helperDelegate.isValidValue(undefined);
         expect(result).toBeFalse();
         const logResult = global.turbine.logger.debug;
-        expect(logResult).toHaveBeenCalledWith('the value to operate on is undefined or null');
-      }
-    );
-
-    it(
-      'should log a debug message and return false when "value" is null',
-      function() {
-        var result = helperDelegate.isValidValue(null);
-        expect(result).toBeFalse();
-        var logResult = global.turbine.logger.debug;
-        expect(logResult).toHaveBeenCalledWith('the value to operate on is undefined or null');
-      }
-    );
-
-    it(
-      'should log an error message and return false when "value" is falsy',
-      function() {
-        var result = helperDelegate.isValidValue('');
-        expect(result).toBeFalse();
-        var logResult = global.turbine.logger.error;
-        expect(logResult).toHaveBeenCalledWith('the value to operate on is invalid');
+        expect(logResult).toHaveBeenCalledWith('the value to operate on is undefined');
       }
     );
 
