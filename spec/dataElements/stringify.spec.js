@@ -16,32 +16,32 @@
 
 'use strict';
 
-describe('stringify data element delegate', function() {
-  var dataElementDelegate = require('../../src/lib/dataElements/stringify');
+describe('stringify data element delegate', () => {
+  const dataElementDelegate = require('../../src/lib/dataElements/stringify');
 
-  beforeEach(function() {
+  beforeEach(() => {
     this.expectedResult = '{"foo":1,"bar":2}';
     this.settings = {
-      objectValue: JSON.parse(this.expectedResult)
+      objectValue: JSON.parse(this.expectedResult),
     };
   });
 
-  describe('with invalid "settings" argument', function() {
+  describe('with invalid "settings" argument', () => {
     it(
       'should return undefined when "objectValue" is missing',
-      function() {
+      () => {
         delete this.settings.objectValue;
-        var result = dataElementDelegate(this.settings);
+        const result = dataElementDelegate(this.settings);
         expect(result).toBeUndefined();
       }
     );
   });
 
-  describe('with valid "settings" argument', function() {
+  describe('with valid "settings" argument', () => {
     it(
       'should be an Object when "objectValue" is valid',
-      function() {
-        var result = dataElementDelegate(this.settings);
+      () => {
+        const result = dataElementDelegate(this.settings);
         expect(result).toEqual(this.expectedResult);
       }
     );

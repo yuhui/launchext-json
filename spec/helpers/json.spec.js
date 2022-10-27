@@ -16,29 +16,29 @@
 
 'use strict';
 
-describe('json helper delegate', function() {
+describe('json helper delegate', () => {
   global.turbine = {
     logger: jasmine.createSpyObj('', ['debug', 'info', 'warn', 'alert', 'error']),
   };
-  var helperDelegate = require('../../src/lib/helpers/json');
+  const helperDelegate = require('../../src/lib/helpers/json');
 
-  describe('has JSON', function() {
+  describe('has JSON', () => {
     it(
       'should always be true',
-      function() {
-        var result = helperDelegate.hasJSON();
+      () => {
+        const result = helperDelegate.hasJSON();
         expect(result).toBeTrue();
       }
     );
   });
 
-  describe('check for valid values', function() {
+  describe('check for valid values', () => {
     it(
       'should log a debug message and return false when "value" is undefined',
-      function() {
-        var result = helperDelegate.isValidValue(undefined);
+      () => {
+        const result = helperDelegate.isValidValue(undefined);
         expect(result).toBeFalse();
-        var logResult = global.turbine.logger.debug;
+        const logResult = global.turbine.logger.debug;
         expect(logResult).toHaveBeenCalledWith('the value to operate on is undefined or null');
       }
     );
@@ -65,26 +65,35 @@ describe('json helper delegate', function() {
 
     it(
       'should return true when "value" is truthy',
-      function() {
-        var result = helperDelegate.isValidValue({"foo": 1, "bar": 2});
+      () => {
+        const testObject = {
+          foo: 1,
+          bar: 2,
+        };
+        const result = helperDelegate.isValidValue(testObject);
         expect(result).toBeTrue();
       }
     );
 
     it(
       'should log an error message and return false when "value" is not a string',
-      function() {
-        var result = helperDelegate.isValidValue({"foo": 1, "bar": 2}, true);
+      () => {
+        const testObject = {
+          foo: 1,
+          bar: 2,
+        };
+        const result = helperDelegate.isValidValue(testObject, true);
         expect(result).toBeFalse();
-        var logResult = global.turbine.logger.error;
-        expect(logResult).toHaveBeenCalledWith('the value to parse is not a string');
+        const logResult = global.turbine.logger.error;
+        expect(logResult).toHaveBeenCalledWith('the value to operate on is not a string');
       }
     );
 
     it(
       'should return true when "value" is a string',
-      function() {
-        var result = helperDelegate.isValidValue('{"foo": 1, "bar": 2}', true);
+      () => {
+        const testString = '{"foo": 1, "bar": 2}';
+        const result = helperDelegate.isValidValue(testString, true);
         expect(result).toBeTrue();
       }
     );

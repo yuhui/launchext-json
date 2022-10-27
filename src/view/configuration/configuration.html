@@ -77,18 +77,18 @@
 
     <script src="https://assets.adobedtm.com/activation/reactor/extensionbridge/extensionbridge.min.js"></script>
     <script>
-      var FORM_ID = 'extension-configuration';
+      const FORM_ID = 'extension-configuration';
 
       window.extensionBridge.register({
-        init: function(info) {
+        init: (info) => {
           if (info.settings) {}
         },
 
-        getSettings: function() {
+        getSettings: () => {
           return {};
         },
 
-        validate: function() {
+        validate: () => {
           return true;
         }
       });

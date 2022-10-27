@@ -57,8 +57,9 @@ module.exports = {
       }
 
       if (value && isString) {
-        var valueType = Object.prototype.toString.call(value).slice(8, -1);
-        if (valueType !== 'String') {
+        var toString = Object.prototype.toString;
+        var valueType = toString.call(value);
+        if (valueType !== '[object String]') {
           turbine.logger.error('the value to parse is not a string');
           result = false;
         }

@@ -1,6 +1,7 @@
 {
   "env": {
     "browser": true,
+    "es6": true, // but extension code should be in ES5 to support IE 10
     "jasmine": true,
     "node": true
   },
@@ -12,7 +13,6 @@
     "turbine": true
   },
   "parserOptions": {
-    "ecmaVersion": 5, // Adobe Experience Platform Data Collection Tags still uses ES5
     "sourceType": "script"
   },
   "rules": {

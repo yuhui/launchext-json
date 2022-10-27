@@ -16,42 +16,42 @@
 
 'use strict';
 
-describe('parse data element delegate', function() {
-  var dataElementDelegate = require('../../src/lib/dataElements/parse');
+describe('parse data element delegate', () => {
+  const dataElementDelegate = require('../../src/lib/dataElements/parse');
 
-  beforeEach(function() {
+  beforeEach(() => {
     // eslint-disable-next-line quotes
     this.expectedResult = {"foo": 1, "bar": 2};
     this.settings = {
-      stringValue: JSON.stringify(this.expectedResult)
+      stringValue: JSON.stringify(this.expectedResult),
     };
   });
 
-  describe('with invalid "settings" argument', function() {
+  describe('with invalid "settings" argument', () => {
     it(
       'should return undefined when "stringValue" is missing',
-      function() {
+      () => {
         delete this.settings.stringValue;
-        var result = dataElementDelegate(this.settings);
+        const result = dataElementDelegate(this.settings);
         expect(result).toBeUndefined();
       }
     );
 
     it(
       'should return undefined when "stringValue" is not a valid string',
-      function() {
+      () => {
         this.settings.stringValue = 123;
-        var result = dataElementDelegate(this.settings);
+        const result = dataElementDelegate(this.settings);
         expect(result).toBeUndefined();
       }
     );
   });
 
-  describe('with valid "settings" argument', function() {
+  describe('with valid "settings" argument', () => {
     it(
       'should be an Object when "stringValue" is valid',
-      function() {
-        var result = dataElementDelegate(this.settings);
+      () => {
+        const result = dataElementDelegate(this.settings);
         expect(result).toEqual(this.expectedResult);
       }
     );

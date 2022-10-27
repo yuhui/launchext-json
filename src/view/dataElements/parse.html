@@ -70,37 +70,38 @@
     <script src="https://assets.adobedtm.com/activation/reactor/extensionbridge/extensionbridge.min.js"></script>
     <script src="../scripts/common.js"></script>
     <script>
-      var FORM_ID = 'data-element-configuration';
+      const FORM_ID = 'data-element-configuration';
 
       window.extensionBridge.register({
-        init: function(info) {
+        init: (info) => {
           if (info.settings) {
             setFormValues(FORM_ID, info.settings);
           }
         },
 
-        getSettings: function() {
-          var formValues = getFormValues(FORM_ID);
+        getSettings: () => {
+          const formValues = getFormValues(FORM_ID);
 
           return formValues;
         },
 
-        validate: function() {
-          var coralTextFieldSelector = 'input[is="coral-textfield"]';
-          document.querySelectorAll(coralTextFieldSelector).forEach(function(input) {
+        validate: () => {
+          const textFieldSelector = 'input[is="coral-textfield"]';
+          const textFieldInputs = document.querySelectorAll(textFieldSelector);
+          textFieldInputs.forEach((input) => {
             input.removeAttribute('invalid');
           });
-          var errorTextFieldSelector = coralTextFieldSelector + '[name="fieldName"]';
+          const errorTextFieldSelector = `${textFieldSelector}[name="fieldName"]`;
 
-          var formValues = getFormValues(FORM_ID);
+          const formValues = getFormValues(FORM_ID);
+          const { stringValue } = formValues;
 
-          var stringValue = formValues.stringValue;
-
-          var stringValueIsNotBlank = stringValue.length > 0;
-          var stringValueIsValid = stringValueIsNotBlank;
+          const stringValueIsNotBlank = stringValue.length > 0;
+          const stringValueIsValid = stringValueIsNotBlank;
           if (!stringValueIsValid) {
-            var selector = errorTextFieldSelector.replace('fieldName', 'stringValue');
-            document.querySelectorAll(selector).forEach(function(input) {
+            const selector = errorTextFieldSelector.replace('fieldName', 'stringValue');
+            const errorTextFieldInputs = document.querySelectorAll(selector);
+            errorTextFieldInputs.forEach((input) => {
               input.setAttribute('invalid', '');
             });
           }
@@ -114,10 +115,12 @@
        * open Data Collection Tags's data element selector,
        * then set the button's input sibling with the selected data element.
        */
-      document.querySelectorAll('button[icon="data"]').forEach(function(button) {
-        button.addEventListener('click', function(e) {
-          var inputElement = this.closest('div.coral-InputGroup').querySelector('input');
-          window.extensionBridge.openDataElementSelector().then(function(dataElement) {
+      const dataButtons = document.querySelectorAll('button[icon="data"]');
+      dataButtons.forEach((button) => {
+        button.addEventListener('click', (event) => {
+          const inputGroup = event.target.closest('div.coral-InputGroup');
+          const inputElement = inputGroup.querySelector('input');
+          window.extensionBridge.openDataElementSelector().then((dataElement) => {
             inputElement.value = dataElement;
           });
         });
