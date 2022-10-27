@@ -11,17 +11,19 @@
   <h1>Reactor Extension Library Sandbox</h1>
   <p>How to test:</p>
   <ol>
-    <li class="coral-List-item">Open the browser console.</li>
-    <li class="coral-List-item">To test the "Parse" data element: run <code>_satellite.getVar('parsed sampleString')</code>.</li>
-    <li class="coral-List-item">To test the "Stringify" data element: run <code>_satellite.getVar('stringified sampleObject')</code>.</li>
-    <li class="coral-List-item">To test the <code>null</code> data element: run <code>_satellite.getVar('parsed nullObject')</code>.</li>
-    <li class="coral-List-item">To test the <code>undefined</code> data element: run <code>_satellite.getVar('stringified undefinedObject')</code>.</li>
+    <li>Open the browser console.</li>
+    <li>To test the "Parse" data element: run <code>_satellite.getVar('parsed sampleString')</code>, should get an object.</li>
+    <li>To test the "Stringify" data element: run <code>_satellite.getVar('stringified sampleObject')</code>, should get a string.</li>
+    <li>To test the <code>"null"</code> data element: run <code>_satellite.getVar('parsed nullString')</code>, should get <code>null</code> object.</li>
+    <li>To test the <code>undefined</code> data element: run <code>_satellite.getVar('stringified undefinedObject')</code>, should get <code>undefined</code> object.</li>
+    <li>To test the <code>"undefined"</code> data element: run <code>_satellite.getVar('parsed undefinedString')</code>, should get <code>undefined</code> object.</li>
   </ol>
   <script>
-    var nullObject = null;
-    var undefinedObject = undefined;
-    var sampleObject = {foo: 1, bar: 2};
     var sampleString = '{"foo": 1, "bar": 2}';
+    var sampleObject = {foo: 1, bar: 2};
+    var nullString = 'null';
+    var undefinedString = 'undefined';
+    var undefinedObject = undefined;
   </script>
 </body>
 

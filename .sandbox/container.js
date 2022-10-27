@@ -10,6 +10,15 @@ module.exports = {
       "modulePath": "sandbox/javascriptVariable.js",
       "storageDuration": ""
     },
+    "stringified sampleObject": {
+      "settings": {
+        "objectValue": "%sampleObject%"
+      },
+      "cleanText": false,
+      "forceLowerCase": false,
+      "modulePath": "json-helper/src/lib/dataElements/stringify.js",
+      "storageDuration": ""
+    },
     "sampleString": {
       "settings": {
         "path": "sampleString"
@@ -28,13 +37,22 @@ module.exports = {
       "modulePath": "json-helper/src/lib/dataElements/parse.js",
       "storageDuration": ""
     },
-    "nullObject": {
+    "nullString": {
       "settings": {
-        "path": "nullObject"
+        "path": "nullString"
       },
       "cleanText": false,
       "forceLowerCase": false,
       "modulePath": "sandbox/javascriptVariable.js",
+      "storageDuration": ""
+    },
+    "parsed nullString": {
+      "settings": {
+        "stringValue": "%nullString%"
+      },
+      "cleanText": false,
+      "forceLowerCase": false,
+      "modulePath": "json-helper/src/lib/dataElements/parse.js",
       "storageDuration": ""
     },
     "undefinedObject": {
@@ -46,15 +64,6 @@ module.exports = {
       "modulePath": "sandbox/javascriptVariable.js",
       "storageDuration": ""
     },
-    "parsed nullObject": {
-      "settings": {
-        "stringValue": "%nullObject%"
-      },
-      "cleanText": false,
-      "forceLowerCase": false,
-      "modulePath": "json-helper/src/lib/dataElements/parse.js",
-      "storageDuration": ""
-    },
     "stringified undefinedObject": {
       "settings": {
         "objectValue": "%undefinedObject%"
@@ -64,13 +73,22 @@ module.exports = {
       "modulePath": "json-helper/src/lib/dataElements/stringify.js",
       "storageDuration": ""
     },
-    "stringified sampleObject": {
+    "undefinedString": {
       "settings": {
-        "objectValue": "%sampleObject%"
+        "path": "undefinedString"
       },
       "cleanText": false,
       "forceLowerCase": false,
-      "modulePath": "json-helper/src/lib/dataElements/stringify.js",
+      "modulePath": "sandbox/javascriptVariable.js",
+      "storageDuration": ""
+    },
+    "parsed undefinedString": {
+      "settings": {
+        "stringValue": "%undefinedString%"
+      },
+      "cleanText": false,
+      "forceLowerCase": false,
+      "modulePath": "json-helper/src/lib/dataElements/parse.js",
       "storageDuration": ""
     }
   },
@@ -87,10 +105,14 @@ module.exports = {
   "company": {
     "orgId": "ABCDEFGHIJKLMNOPQRSTUVWX@AdobeOrg"
   },
+  "environment": {
+    "id": "EN00000000000000000000000000000000",
+    "stage": "development"
+  },
   "buildInfo": {
-    "turbineVersion": "27.2.0",
-    "turbineBuildDate": "2021-09-12T15:23:06.071Z",
-    "buildDate": "2021-09-12T15:23:06.071Z",
+    "turbineVersion": "27.2.1",
+    "turbineBuildDate": "2022-10-27T10:13:26.451Z",
+    "buildDate": "2022-10-27T10:13:26.451Z",
     "environment": "development"
   }
 }
