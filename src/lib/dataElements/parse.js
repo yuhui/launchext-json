@@ -1,5 +1,5 @@
 /**
- * Copyright 2021 Yuhui. All rights reserved.
+ * Copyright 2021-2022 Yuhui. All rights reserved.
  *
  * Licensed under the GNU General Public License, Version 3.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ var jsonHelper = require('../helpers/json');
  * Construct the JavaScript value or object described by the JSON string.
  *
  * @param {Object} settings The data element settings object.
- * @param {string} settings.stringValue JSON string value to parse.
+ * @param {String} settings.stringValue JSON string value to parse.
  *
  * @returns {Object} The Object, Array, string, number, boolean, or null value
  *  corresponding to the given JSON string.

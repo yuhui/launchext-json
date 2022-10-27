@@ -1,19 +1,26 @@
 {
   "name": "launchext-json-helper",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Parse JSON strings and convert values to JSON natively within Adobe Experience Platform Data Collection Tags without using custom code at all.",
   "author": "Yuhui",
   "license": "GPL-3.0-or-later",
   "main": "main.js",
   "devDependencies": {
+    "@adobe/coral-spectrum": "^4.15.4",
     "@adobe/reactor-packager": "^4.2.0",
-    "@adobe/reactor-releaser": "^3.0.3",
+    "@adobe/reactor-releaser": "^3.0.4",
     "@adobe/reactor-sandbox": "^12.4.0",
-    "@adobe/reactor-uploader": "^5.0.6",
-    "eslint": "^8.15.0",
-    "jasmine": "^4.1.0"
+    "@adobe/reactor-uploader": "^5.0.9",
+    "eslint": "^8.26.0",
+    "jasmine": "^4.4.0"
   },
   "scripts": {
+    "remove-spectrum-dist": "rm -rf ./src/view/dist/*",
+    "copy-spectrum-dist-css": "mkdir ./src/view/dist/css && cp ./node_modules/@adobe/coral-spectrum/dist/css/*.min.css ./src/view/dist/css",
+    "copy-spectrum-dist-js": "mkdir ./src/view/dist/js && cp ./node_modules/@adobe/coral-spectrum/dist/js/*.min.js* ./src/view/dist/js",
+    "copy-spectrum-dist-resources": "mkdir ./src/view/dist/resources && cp ./node_modules/@adobe/coral-spectrum/dist/resources/* ./src/view/dist/resources",
+    "copy-spectrum-dist": "npm run copy-spectrum-dist-css && npm run copy-spectrum-dist-js && npm run copy-spectrum-dist-resources",
+    "cp-spectrum": "npm run remove-spectrum-dist && npm run copy-spectrum-dist",
     "test": "jasmine"
   },
   "repository": {

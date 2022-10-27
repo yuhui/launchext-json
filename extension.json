@@ -2,14 +2,14 @@
   "displayName": "JSON Helper",
   "name": "json-helper",
   "platform": "web",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Parse JSON strings and convert values to JSON natively within Adobe Experience Platform Data Collection Tags without using custom code at all.",
   "author": {
     "name": "Yuhui",
     "url": "https://yuhui.sg",
     "email": "dev@yuhui.sg"
   },
-  "exchangeUrl": "https://exchange.adobe.com/experiencecloud.details.106449.json-helper.html",
+  "exchangeUrl": "https://exchange.adobe.com/apps/ec/106449",
   "iconPath": "json-helper-icon.svg",
   "viewBasePath": "src/view/",
   "configuration": {

@@ -1,5 +1,5 @@
 /**
- * Copyright 2021 Yuhui. All rights reserved.
+ * Copyright 2021-2022 Yuhui. All rights reserved.
  *
  * Licensed under the GNU General Public License, Version 3.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ module.exports = {
   /**
    * Checks that the JSON object exists.
    *
-   * @return {boolean} `true` if the JSON object exists, `false` otherwise.
+   * @return {Boolean} `true` if the JSON object exists, `false` otherwise.
    */
   hasJSON: function() {
     var result = true;
@@ -37,9 +37,9 @@ module.exports = {
    * Checks that the value to operate on is valid for the operation.
    *
    * @param {Object} value The value to validate.
-   * @param {boolean} isString (optional) `true` if the value is a string.
+   * @param {Boolean} isString (optional) `true` if the value is a string.
    *
-   * @return {boolean} `true` if the value is valid, `false` otherwise.
+   * @return {Boolean} `true` if the value is valid, `false` otherwise.
    */
   isValidValue: function(value, isString) {
     var result = true;

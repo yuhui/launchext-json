@@ -15,6 +15,6 @@ It provides Data Element types to perform the following operations:
 
 ## Copyright
 
-Copyright &copy; Yuhui 2021. All rights reserved.
+Copyright &copy; Yuhui 2021-2022. All rights reserved.
 
 Licensed under the GNU General Public License (GPL) version 3.0.
