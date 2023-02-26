@@ -11,7 +11,7 @@ It provides Data Element types to perform the following operations:
 
 ## Reference
 
-[JSON Overview](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON)
+[JSON Overview at MDN Web Docs](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON)
 
 ## Copyright
 
