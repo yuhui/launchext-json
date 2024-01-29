@@ -9,21 +9,36 @@
 
 <body>
   <h1>Reactor Extension Library Sandbox</h1>
-  <p>How to test:</p>
-  <ol>
-    <li>Open the browser console.</li>
-    <li>To test the "Parse" data element: run <code>_satellite.getVar('parsed sampleString')</code>, should get an object.</li>
-    <li>To test the "Stringify" data element: run <code>_satellite.getVar('stringified sampleObject')</code>, should get a string.</li>
-    <li>To test the <code>"null"</code> data element: run <code>_satellite.getVar('parsed nullString')</code>, should get <code>null</code> object.</li>
-    <li>To test the <code>undefined</code> data element: run <code>_satellite.getVar('stringified undefinedObject')</code>, should get <code>undefined</code> object.</li>
-    <li>To test the <code>"undefined"</code> data element: run <code>_satellite.getVar('parsed undefinedString')</code>, should get <code>undefined</code> object.</li>
-  </ol>
+  <p>Open the DevTools console to verify results.</p>
   <script>
-    var sampleString = '{"foo": 1, "bar": 2}';
-    var sampleObject = {foo: 1, bar: 2};
+    var sampleString = '{"foo": 1, "bar": 2, "3": "stamp"}';
+    var sampleObject = {foo: 1, bar: 2, 3: 'stamp'};
     var nullString = 'null';
     var undefinedString = 'undefined';
     var undefinedObject = undefined;
+    var reviverFunction = function(k, v) {
+      return v === 2 ? 'two' : v;
+    };
+    var replacerFunction = function(k, v) {
+      return k === 'foo' ? 'one' : v;
+    };
+    var replacerArray = ['bar', 3];
+    var spaceChar = 'aaa';
+    var spaceNum = 4;
+
+    setTimeout(() => {
+      console.log('parsed sampleString', _satellite.getVar('parsed sampleString'));
+      console.log('parsed sampleString with reviverFunction ({bar: 2} should be {bar: "two"})', _satellite.getVar('parsed sampleString with reviverFunction'));
+      console.log('stringified sampleObject', _satellite.getVar('stringified sampleObject'));
+      console.log('stringified sampleObject with replacerFunction ({foo: 1} should be {foo: "one"})', _satellite.getVar('stringified sampleObject with replacerFunction'));
+      console.log('stringified sampleObject with replacerArray (should have "bar" and "3" only)', _satellite.getVar('stringified sampleObject with replacerArray'));
+      console.log('stringified sampleObject with spaceChar (should have "aaa" spaces)', _satellite.getVar('stringified sampleObject with spaceChar'));
+      console.log('stringified sampleObject with spaceNum (should have 4 spaces)', _satellite.getVar('stringified sampleObject with spaceNum'));
+      console.log('parsed nullString', _satellite.getVar('parsed nullString'));
+      console.log('stringified undefinedObject', _satellite.getVar('stringified undefinedObject'));
+      console.log('parsed undefinedString', _satellite.getVar('parsed undefinedString'));
+      console.log('parsed sampleObject logs error', _satellite.getVar('parsed sampleObject logs error'));
+    }, 1000);
   </script>
 </body>
 
