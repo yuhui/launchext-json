@@ -32,6 +32,11 @@
             "description": "Parse a JSON string",
             "type": "string",
             "minLength": 1
+          },
+          "reviver": {
+            "description": "Data element of function to transform the value",
+            "type": ["string", "null"],
+            "default": null
           }
         },
         "required": [

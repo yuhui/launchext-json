@@ -23,6 +23,28 @@
           </span>
         </div>
       </div>
+
+      <coral-accordion>
+        <coral-accordion-item id="advanced-accordion">
+          <coral-accordion-item-label>Advanced</coral-accordion-item-label>
+          <div class="coral-FormGroup-item">
+            <label for="reviver" class="coral-FormGroup-itemLabel">
+              (optional) Transform the parsed value with a reviver parameter.<br />
+              <b>IMPORTANT!</b> A data element that <i>returns a function (that accepts 2 arguments)</i>
+              must be provided here.
+            </label>
+            <div class="coral-InputGroup" style="width: 100%;" role="presentation">
+              <input id="reviver" name="reviver" type="text" value="" class="coral-InputGroup-input" is="coral-textfield" placeholder="reviver parameter data element">
+              <span class="coral-InputGroup-button">
+                <button is="coral-button" icon="data" title="Data Element selector"></button>
+              </span>
+            </div>
+            <a class="coral-Link" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse#the_reviver_parameter" rel="noopener noreferrer" target="_blank">
+              Learn more about the reviver parameter.
+            </a>
+          </div>
+        </coral-accordion-item>
+      </coral-accordion>
     </form>
 
     <section class="coral-Well">
@@ -76,13 +98,26 @@
 
       window.extensionBridge.register({
         init: (info) => {
-          if (info.settings) {
+          const { settings } = info;
+          if (settings) {
+            const { reviver = null } = settings;
+            if (reviver === null) {
+              info.settings.reviver = '';
+            }
+            if (info.settings.reviver) {
+              toggleAccordion('advanced-accordion');
+            }
+
             setFormValues(FORM_ID, info.settings);
           }
         },
 
         getSettings: () => {
           const formValues = getFormValues(FORM_ID);
+          const { reviver } = formValues;
+          if (reviver === '') {
+            formValues.reviver = null;
+          }
 
           return formValues;
         },
@@ -96,7 +131,7 @@
           const errorTextFieldSelector = `${textFieldSelector}[name="fieldName"]`;
 
           const formValues = getFormValues(FORM_ID);
-          const { stringValue } = formValues;
+          const { stringValue, reviver } = formValues;
 
           const stringValueIsNotBlank = stringValue.length > 0;
           const stringValueIsValid = stringValueIsNotBlank;
@@ -108,7 +143,16 @@
             });
           }
 
-          return stringValueIsValid;
+          const reviverIsValid = reviver === '' || isDataElementToken(reviver);
+          if (!reviverIsValid) {
+            const selector = errorTextFieldSelector.replace('fieldName', 'reviver');
+            const errorTextFieldInputs = document.querySelectorAll(selector);
+            errorTextFieldInputs.forEach((input) => {
+              input.setAttribute('invalid', '');
+            });
+          }
+
+          return stringValueIsValid && reviverIsValid;
         }
       });
 

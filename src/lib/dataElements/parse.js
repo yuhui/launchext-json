@@ -29,11 +29,12 @@ const validateValue = require('../helpers/validateValue');
  *
  * @param {Object} settings The data element settings object.
  * @param {String} settings.stringValue JSON string value to parse.
+ * @param {Function} [settings.reviver] (optional) Function to transform the value.
  *
  * @returns {Object} The Object, Array, string, number, boolean, or null value
  *  corresponding to the given JSON string.
  */
-module.exports = function(settings) {
+module.exports = function({ stringValue, reviver = null } = {}) {
   try {
     validateValue(stringValue, ['string']);
   } catch (e) {
@@ -42,6 +43,14 @@ module.exports = function(settings) {
       stringValue
     );
     return;
+  }
+  if (reviver) {
+    try {
+      validateValue(reviver, ['function']);
+    } catch (e) {
+      logError(`Parse: reviver ${e.message}`, reviver);
+      return;
+    }
   }
 
   if (stringValue === 'undefined') {
@@ -52,9 +61,11 @@ module.exports = function(settings) {
     return;
   }
 
-  var returnValue;
+  const { parse } = JSON;
+
+  let returnValue;
   try {
-    returnValue = JSON.parse(stringValue);
+    returnValue = parse(stringValue, reviver);
   } catch (e) {
     logError('Parse: unexpected error occurred', e);
     return;
