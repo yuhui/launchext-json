@@ -16,13 +16,13 @@
 
 'use strict';
 
-var jsonHelper = require('../helpers/json');
 const {
   logger: {
     debug: logDebug,
     error: logError,
   },
 } = require('../controllers/turbine');
+const validateValue = require('../helpers/validateValue');
 
 /**
  * Construct the JavaScript value or object described by the JSON string.
@@ -34,12 +34,21 @@ const {
  *  corresponding to the given JSON string.
  */
 module.exports = function(settings) {
-  if (!jsonHelper.hasJSON()) {
+  try {
+    validateValue(stringValue, ['string']);
+  } catch (e) {
+    (stringValue === undefined ? logDebug : logError)(
+      `Parse: JSON string ${e.message}`,
+      stringValue
+    );
     return;
   }
 
-  var stringValue = settings.stringValue;
-  if (!jsonHelper.isValidValue(stringValue, true)) {
+  if (stringValue === 'undefined') {
+    /**
+     * Special case: JSON actually throws an error when parsing "undefined".
+     * So return undefined anyway.
+     */
     return;
   }
 

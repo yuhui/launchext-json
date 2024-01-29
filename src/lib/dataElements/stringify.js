@@ -16,13 +16,13 @@
 
 'use strict';
 
-var jsonHelper = require('../helpers/json');
 const {
   logger: {
     debug: logDebug,
     error: logError,
   },
 } = require('../controllers/turbine');
+const validateValue = require('../helpers/validateValue');
 
 /**
  * Convert a JavaScript object or value to a JSON string.
@@ -33,14 +33,16 @@ const {
  * @returns {String} JSON string representing the given object.
  */
 module.exports = function(settings) {
-  if (!jsonHelper.hasJSON()) {
+  try {
+    validateValue(objectValue);
+  } catch (e) {
+    (objectValue === undefined ? logDebug : logError)(
+      `Stringify: object ${e.message}`,
+      objectValue
+    );
     return;
   }
 
-  var objectValue = settings.objectValue;
-  if (!jsonHelper.isValidValue(objectValue)) {
-    return;
-  }
 
   var returnValue;
   try {
