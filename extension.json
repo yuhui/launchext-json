@@ -59,6 +59,16 @@
             "type": "string",
             "minLength": 2,
             "pattern": "^%([^%]+)%$"
+          },
+          "replacer": {
+            "description": "Data element of function or array to alter the stringification process",
+            "type": ["string", "null"],
+            "default": null
+          },
+          "space": {
+            "description": "Number or string to control spacing",
+            "type": ["integer", "string", "null"],
+            "default": null
           }
         },
         "required": [

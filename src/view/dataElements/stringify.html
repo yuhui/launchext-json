@@ -23,7 +23,59 @@
           </span>
         </div>
       </div>
-    </form>
+
+      <coral-accordion>
+        <coral-accordion-item id="advanced-accordion">
+          <coral-accordion-item-label>Advanced</coral-accordion-item-label>
+          <div class="coral-FormGroup-item">
+            <label for="replacer" class="coral-FormGroup-itemLabel">
+              (optional) Alter the stringification process with a replacer parameter.<br />
+              <b>IMPORTANT!</b> A data element that <i>returns a function (that accepts 2 arguments) or
+              array (of strings or numbers)</i> must be provided here.
+            </label>
+            <div class="coral-InputGroup" style="width: 100%;" role="presentation">
+              <input id="replacer" name="replacer" type="text" value="" class="coral-InputGroup-input" is="coral-textfield" placeholder="replacer parameter data element">
+              <span class="coral-InputGroup-button">
+                <button is="coral-button" icon="data" title="Data Element selector"></button>
+              </span>
+            </div>
+            <a class="coral-Link" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#the_replacer_parameter" rel="noopener noreferrer" target="_blank">
+              Learn more about the replacer parameter.
+            </a>
+          </div>
+    
+          <div class="coral-FormGroup-item">
+            <label for="space" class="coral-FormGroup-itemLabel">
+              (optional) Control spacing with a replacer parameter.<br />
+              <b>IMPORTANT!</b> This <i>must</i> be a number or string, or a data element that returns
+              a value of either type.
+            </label>
+            <div class="coral-InputGroup" style="width: 100%;" role="presentation">
+              <input id="space" name="space" type="text" value="" class="coral-InputGroup-input" is="coral-textfield" placeholder="space parameter">
+              <span class="coral-InputGroup-button">
+                <button is="coral-button" icon="data" title="Data Element selector"></button>
+              </span>
+            </div>
+            <a class="coral-Link" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#the_space_parameter" rel="noopener noreferrer" target="_blank">
+              Learn more about the space parameter.
+            </a>
+
+            <coral-alert variant="warning">
+              <coral-alert-header>
+                Do not select the data element's "Clean text" checkbox when using the "space" parameter
+              </coral-alert-header>
+              <coral-alert-content>
+                When a "space" parameter is provided, the browser returns a JSON string that has
+                multiple lines. But if you select the "Clean text" checkbox, then AEP Tags strips out
+                the new lines and returns a single line. This could be considered to be an
+                inaccurate result. So, you are advised <em>not</em> to select the "Clean data"
+                checkbox when using the "space" parameter.
+              </coral-alert-content>
+            </coral-alert>
+          </div>
+        </coral-accordion-item>
+      </coral-accordion>
+     </form>
 
     <section class="coral-Well">
       <h4 class="coral-Heading--S coral-Heading--light">How this Data Element works</h4>
@@ -76,13 +128,37 @@
 
       window.extensionBridge.register({
         init: (info) => {
-          if (info.settings) {
+          const { settings } = info;
+          if (settings) {
+            const { replacer = null, space = null } = settings;
+            if (replacer === null) {
+              info.settings.replacer = '';
+            }
+            if (space === null) {
+              info.settings.space = '';
+            }
+            if (info.settings.replacer || info.settings.space) {
+              toggleAccordion('advanced-accordion');
+            }
+            if (info.settings.space) {
+              toggleWarning();
+            }
+
             setFormValues(FORM_ID, info.settings);
           }
         },
 
         getSettings: () => {
           const formValues = getFormValues(FORM_ID);
+          const { replacer, space } = formValues;
+          if (replacer === '') {
+            formValues.replacer = null;
+          }
+          if (space === '') {
+            formValues.space = null;
+          } else if (valueIsInteger(space)) {
+            formValues.space = parseInt(space, 10);
+          }
 
           return formValues;
         },
@@ -96,7 +172,7 @@
           const errorTextFieldSelector = `${textFieldSelector}[name="fieldName"]`;
 
           const formValues = getFormValues(FORM_ID);
-          const { objectValue } = formValues;
+          const { objectValue, replacer, space } = formValues;
 
           const objectValueIsDataElementToken = isDataElementToken(objectValue);
           const objectValueIsValid = objectValueIsDataElementToken;
@@ -108,7 +184,28 @@
             });
           }
 
-          return objectValueIsValid;
+          const replacerIsValid = replacer === '' || isDataElementToken(replacer);
+          if (!replacerIsValid) {
+            const selector = errorTextFieldSelector.replace('fieldName', 'replacer');
+            const errorTextFieldInputs = document.querySelectorAll(selector);
+            errorTextFieldInputs.forEach((input) => {
+              input.setAttribute('invalid', '');
+            });
+          }
+
+          const spaceIsValid = space === ''
+            || valueIsInteger(space)
+            || isDataElementToken(space)
+            || space.length > 0;
+          if (!spaceIsValid) {
+            const selector = errorTextFieldSelector.replace('fieldName', 'space');
+            const errorTextFieldInputs = document.querySelectorAll(selector);
+            errorTextFieldInputs.forEach((input) => {
+              input.setAttribute('invalid', '');
+            });
+          }
+
+          return objectValueIsValid && replacerIsValid && spaceIsValid;
         }
       });
 
