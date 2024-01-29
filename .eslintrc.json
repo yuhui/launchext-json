@@ -1,7 +1,7 @@
 {
   "env": {
     "browser": true,
-    "es6": true, // but extension code should be in ES5 to support IE 10
+    "es2018": true,
     "jasmine": true,
     "node": true
   },
