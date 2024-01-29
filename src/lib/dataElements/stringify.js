@@ -17,6 +17,12 @@
 'use strict';
 
 var jsonHelper = require('../helpers/json');
+const {
+  logger: {
+    debug: logDebug,
+    error: logError,
+  },
+} = require('../controllers/turbine');
 
 /**
  * Convert a JavaScript object or value to a JSON string.
@@ -40,9 +46,7 @@ module.exports = function(settings) {
   try {
     returnValue = JSON.stringify(objectValue);
   } catch (e) {
-    turbine.logger.error(
-      'unexpected error occurred with JSON.stringify(): ' +  e.message
-    );
+    logError('Stringify: unexpected error occurred', e);
     return;
   }
 

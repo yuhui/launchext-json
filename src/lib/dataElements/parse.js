@@ -17,6 +17,12 @@
 'use strict';
 
 var jsonHelper = require('../helpers/json');
+const {
+  logger: {
+    debug: logDebug,
+    error: logError,
+  },
+} = require('../controllers/turbine');
 
 /**
  * Construct the JavaScript value or object described by the JSON string.
@@ -41,9 +47,7 @@ module.exports = function(settings) {
   try {
     returnValue = JSON.parse(stringValue);
   } catch (e) {
-    turbine.logger.error(
-      'unexpected error occurred with JSON.parse(): ' +  e.message
-    );
+    logError('Parse: unexpected error occurred', e);
     return;
   }
 
